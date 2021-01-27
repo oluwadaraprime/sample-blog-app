@@ -87,7 +87,7 @@ router.post('/user/:user_id/update', user_controller.user_update_post);
 router.get('/user/:user_id', user_controller.user_detail);
 
 // GET request for list of all Users.
-router.get('/users', ()=>{ console.log('i am here')}, user_controller.user_list);
+router.get('/users', user_controller.user_list);
 
 
 /// Category ROUTES ///
