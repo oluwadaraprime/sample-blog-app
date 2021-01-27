@@ -4,6 +4,7 @@ var router = express.Router();
 
 // Require our controllers.
 var author_controller = require('../controllers/authorController');
+var user_controller = require('../controllers/userController');
 var post_controller = require('../controllers/postController'); 
 var category_controller = require('../controllers/categoryController');
 var comment_controller = require('../controllers/commentController');
@@ -62,6 +63,33 @@ router.get('/author/:author_id', author_controller.author_detail);
 router.get('/authors', author_controller.author_list);
 
 
+/// USER ROUTES ///
+
+// GET request for creating User. NOTE This must come before route for id (i.e. display User).
+router.get('/user/create', user_controller.user_create_get);
+
+// POST request for creating User.
+router.post('/user/create', user_controller.user_create_post);
+
+// GET request to delete User.
+router.get('/user/:user_id/delete', user_controller.user_delete_get);
+
+// POST request to delete User
+router.post('/user/:user_id/delete', user_controller.user_delete_post);
+
+// GET request to update User.
+router.get('/user/:user_id/update', user_controller.user_update_get);
+
+// POST request to update User.
+router.post('/user/:user_id/update', user_controller.user_update_post);
+
+// GET request for one User.
+router.get('/user/:user_id', user_controller.user_detail);
+
+// GET request for list of all Users.
+router.get('/users', ()=>{ console.log('i am here')}, user_controller.user_list);
+
+
 /// Category ROUTES ///
 
 // GET request for creating a Category. NOTE This must come before route that displays Category (uses id).
@@ -117,6 +145,8 @@ router.get('/comments', comment_controller.comment_list);
 
 // GET blog home page.
 router.get('/', post_controller.index); 
+
+
 
 // export all the router created
 module.exports = router;
